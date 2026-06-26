@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: recruiter-salary-benchmark-tool-v1
+    runtime: static
+    buildCommand: "true"
+    staticPublishPath: .
