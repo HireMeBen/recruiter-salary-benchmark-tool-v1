@@ -4,4 +4,4 @@ services:
     runtime: static
     buildCommand: "true"
     staticPublishPath: .
-    
+
