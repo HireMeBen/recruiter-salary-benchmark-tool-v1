@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recruiter Salary Benchmark Tool</title>
+    <link rel="stylesheet" href="./app/styles.css" />
+    <script type="module" src="./app/app.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Demo-ready prototype</p>
+          <h1>Recruiter Salary Benchmark Tool</h1>
+          <p class="lede">
+            Enter a role, experience level, and keywords. The tool compares similar jobs, estimates a
+            salary range, and explains the evidence behind the recommendation.
+          </p>
+        </div>
+        <div class="note">
+          <strong>Built for quick demos.</strong>
+          <span>Three steps: enter a role, review matches, copy the report. No login, no machine learning.</span>
+        </div>
+      </section>
+
+      <section class="panel form-panel">
+        <h2>Recruiter Input</h2>
+        <form id="benchmark-form" class="form-grid">
+          <label>
+            Job Title
+            <input id="jobTitle" name="jobTitle" type="text" value="Sales Executive" />
+          </label>
+          <label>
+            Years of Experience
+            <input id="experience" name="experience" type="number" min="0" step="1" value="2" />
+          </label>
+          <label class="full">
+            Keywords / Requirements
+            <textarea id="keywords" name="keywords" rows="4">B2B Sales, Cold Calling, Lead Generation</textarea>
+          </label>
+          <button type="submit">Find Comparable Jobs</button>
+          <button id="resetDemo" type="button" class="secondary-action">Load Demo Example</button>
+          <div id="actionStatus" class="copy-status full">Ready to generate comparable jobs.</div>
+        </form>
+      </section>
+
+      <section class="panel results-panel">
+        <div class="results-head">
+          <h2>Salary Recommendation</h2>
+          <div id="confidence" class="badge">Confidence: -</div>
+        </div>
+        <div class="report-actions">
+          <button id="copyReport" type="button" class="copy-report">Copy share summary</button>
+          <span id="copyStatus" class="copy-status">Ready to copy a shareable summary.</span>
+        </div>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span class="summary-label">Comparable Jobs</span>
+            <strong id="jobCount">-</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Salary Visible</span>
+            <strong id="salaryCount">-</strong>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Top Match</span>
+            <strong id="topMatch">-</strong>
+          </div>
+        </div>
+        <div class="range-card">
+          <div class="range-label">Suggested Salary Range</div>
+          <div id="salaryRange" class="range-value">-</div>
+          <p id="rangeReason" class="range-reason"></p>
+        </div>
+        <div class="visible-report-wrap" id="reportSummaryMount"></div>
+
+        <h3>Comparable Jobs</h3>
+        <div id="jobList" class="job-list"></div>
+      </section>
+
+      <section class="panel form-panel">
+        <h2>Google Jobs Input</h2>
+        <p class="lede">
+          Phase 3 keeps Google Jobs as the only source. Use the query builder to open a Google Jobs
+          search, then paste the structured results back into the app.
+        </p>
+        <form id="query-form" class="form-grid">
+          <label class="full">
+            Google Jobs Search URL
+            <input id="searchUrl" name="searchUrl" type="text" placeholder="Generated automatically" readonly />
+          </label>
+          <button type="submit">Generate Google Jobs URL</button>
+          <a id="openSearch" class="button-link" href="#" target="_blank" rel="noreferrer">Open Google Jobs Search</a>
+        </form>
+        <form id="jobs-form" class="form-grid">
+          <label class="full">
+            Google Jobs JSON
+            <textarea id="jobsJson" name="jobsJson" rows="10"></textarea>
+          </label>
+          <button type="submit">Load Google Jobs Results</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>How it works</h2>
+        <ol class="steps">
+          <li>Match job title, experience, and keywords against comparable postings.</li>
+          <li>Score each posting from 0 to 100 using simple weighted heuristics.</li>
+          <li>Use the strongest salary-visible postings to estimate a range and remove obvious outliers.</li>
+          <li>Show recruiters the evidence so they can make a fast, explainable call.</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+  </html>
